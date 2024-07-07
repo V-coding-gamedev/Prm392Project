@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1062027125775",
+    "project_id": "prm392-project-71887",
+    "storage_bucket": "prm392-project-71887.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062027125775:android:212b3205a5ab0c1d8a2f7a",
+        "android_client_info": {
+          "package_name": "com.example.signuploginfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq4H3wJLXe5Y79ZIVPBAH-9alxplKdCqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
