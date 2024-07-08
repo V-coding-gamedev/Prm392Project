@@ -16,6 +16,10 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".OrderListActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
