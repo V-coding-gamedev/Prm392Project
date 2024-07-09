@@ -8,8 +8,13 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <TextView
+<include layout="@layout/menu_top" />
+    <Button
+        android:layout_marginTop="200dp"
+        android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Page"/>
+        android:layout_height="100dp"
+        android:textSize="30sp"
+        android:text="Add To Cart" />
+
 </LinearLayout>

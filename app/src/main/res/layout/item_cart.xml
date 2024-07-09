@@ -16,12 +16,15 @@
 
     <TextView
         android:id="@+id/descriptionItem"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:layout_weight="1"
         android:padding="2dp"
-        android:text="TextView"
+
+
+        android:text="Nước mắm Phú Quốc chất lượng caoNước mắm Phú Quốc chất lượng caoNước mắm Phú Quốc chất lượng cao"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -35,32 +38,33 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background=""
-            android:text="Button" />
+            android:background="@drawable/up_button" />
 
         <TextView
             android:id="@+id/numbItem"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="10"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/buttonDown"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Button" />
+            android:background="@drawable/down_button" />
     </LinearLayout>
 
     <Button
-        android:layout_marginBottom="3dp"
         android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="30sp"
         android:layout_weight="1"
-        android:rotation="90"
+        android:background="@drawable/delete_button"
         android:layoutDirection="inherit"
-        android:text="Delete" />
+        android:rotation="90"
+        android:text="DELETE" />
 </LinearLayout>

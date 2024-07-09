@@ -63,9 +63,6 @@ class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
 
     //các data tương ứng bên view
     List<ItemCart> listItemCarts;
-    private ViewGroup parent;
-    private int viewType;
-
     public CartAdapter(List<ItemCart> data) {
         listItemCarts = data;
     }
@@ -106,6 +103,4 @@ class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
     public int getItemCount() {
         return listItemCarts.size();
     }
-
-
 }
