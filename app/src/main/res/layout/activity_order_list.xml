@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/orderListAndroid"
+    android:background="@drawable/background_color"
+    android:padding="16dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/left_arrowButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/left_arrow"
+            android:contentDescription="@string/left_arrow_description" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Danh sách đơn hàng"
+            android:id="@+id/home"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/darker_gray">
+
+            <!-- Header -->
+            <TableRow android:background="#36304a">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#36304a"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="STT"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#36304a"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Ngày đặt đơn"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#36304a"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Ngày kết thúc đơn"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#36304a"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Tổng tiền"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#36304a"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Địa chỉ ship"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#36304a"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Trạng thái giao hàng"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+            </TableRow>
+
+            <!-- Row 1 -->
+            <TableRow android:background="@android:color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="1"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="01/01/2024"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="05/01/2024"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="500,000 VND"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Hà Nội"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:onClick="onStatusClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Đang giao"
+                    android:textColor="#808080" />
+            </TableRow>
+
+            <!-- Row 2 -->
+            <TableRow android:background="#f5f5f5">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f5f5f5"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="2"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f5f5f5"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="01/01/2024"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f5f5f5"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="05/01/2024"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f5f5f5"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="500,000 VND"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f5f5f5"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Hà Nội"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:onClick="onStatusClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f5f5f5"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Đang giao"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+
+            <!-- Add more rows as needed -->
+
+        </TableLayout>
+    </HorizontalScrollView>
+</LinearLayout>

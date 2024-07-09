@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SignUp Login Firebase</string>
+    <string name="left_arrow_description">Left arrow button</string>
 </resources>
