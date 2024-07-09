@@ -120,6 +120,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void insertOrder(String orderDate, String status, double totalAmount, String startDate, String endDate, String shipAddress, int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("orderDate", orderDate);
+        contentValues.put("status", status);
+        contentValues.put("totalAmount", totalAmount);
+        contentValues.put("startDate", startDate);
+        contentValues.put("endDate", endDate);
+        contentValues.put("shipAddress", shipAddress);
+        contentValues.put("user_id", userId);
+        db.insert("Orders", null, contentValues);
+        db.close();
+    }
+
     public Boolean insertuserdata(String usernameTXT, String emailTXT, String phoneTXT,
                                   String passwordTXT, String addressTXT) {
 
