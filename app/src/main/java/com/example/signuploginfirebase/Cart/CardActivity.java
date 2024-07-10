@@ -44,12 +44,12 @@ public class CardActivity extends AppCompatActivity {
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         List<ItemCart> itemCarts = new java.util.ArrayList<>();
-        itemCarts.add(new ItemCart(R.drawable.ic_launcher_foreground, "Sữa rửa mặt cao cấp", "10"));
-        itemCarts.add(new ItemCart(R.drawable.ic_launcher_foreground, "Túi sách mặt cao cấp", "15"));
-        itemCarts.add(new ItemCart(R.drawable.ic_launcher_foreground, "Bát ăn cơm cao cấp", "11"));
-        itemCarts.add(new ItemCart(R.drawable.ic_launcher_foreground, "Bát ăn cơm cao cấp", "11"));
-        itemCarts.add(new ItemCart(R.drawable.ic_launcher_foreground, "Bát ăn cơm cao cấp", "11"));
-        itemCarts.add(new ItemCart(R.drawable.ic_launcher_foreground, "Bát ăn cơm cao cấp", "11"));
+        itemCarts.add(new ItemCart(R.drawable.ic_launcher_background, "Sữa rửa mặt cao cấp", "10"));
+        itemCarts.add(new ItemCart(R.drawable.ic_launcher_background, "Túi sách mặt cao cấp", "15"));
+        itemCarts.add(new ItemCart(R.drawable.ic_launcher_background, "Bát ăn cơm cao cấp", "11"));
+        itemCarts.add(new ItemCart(R.drawable.ic_launcher_background, "Bát ăn cơm cao cấp", "11"));
+        itemCarts.add(new ItemCart(R.drawable.ic_launcher_background, "Bát ăn cơm cao cấp", "11"));
+        itemCarts.add(new ItemCart(R.drawable.ic_launcher_background, "Bát ăn cơm cao cấp", "11"));
         cartAdapter = new CartAdapter(itemCarts);
         recyclerView.setAdapter(cartAdapter);
 

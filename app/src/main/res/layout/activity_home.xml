@@ -9,12 +9,13 @@
     tools:context=".HomeActivity">
 
 <include layout="@layout/menu_top" />
+
     <Button
-        android:layout_marginTop="200dp"
-        android:id="@+id/button3"
+        android:id="@+id/addtocart"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:textSize="30sp"
-        android:text="Add To Cart" />
+        android:layout_marginTop="200dp"
+        android:text="Add To Cart"
+        android:textSize="30sp" />
 
 </LinearLayout>
