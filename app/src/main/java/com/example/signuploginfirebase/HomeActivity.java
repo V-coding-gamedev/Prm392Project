@@ -1,6 +1,7 @@
 package com.example.signuploginfirebase;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.signuploginfirebase.Cart.CardActivity;
 import com.example.signuploginfirebase.Models.Product;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,7 +58,12 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("Com", "complete");
         ProductAdapter adapter = new ProductAdapter(productList);
         recyclerView.setAdapter(adapter);
-//        addToCartButton.setOnClickListener();
+
+        Button cartButton = findViewById(R.id.cartButton);
+        cartButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CardActivity.class);
+            startActivity(intent);
+        });
     }
 
 

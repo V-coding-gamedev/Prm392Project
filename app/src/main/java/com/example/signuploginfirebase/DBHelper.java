@@ -322,6 +322,26 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    public boolean updateuserdata(String username, String email, String phone, String address){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("phone", phone);
+        contentValues.put("address", address);
+        Cursor cursor = DB.rawQuery("Select * from Users where email = ?", new String[]{email});
+
+        if (cursor.getCount() > 0){
+            long result = DB.update("Users", contentValues, "email=?", new String[]{email});
+
+            if (result == -1){
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
 
     public boolean deletedata(String username){
         SQLiteDatabase DB = this.getWritableDatabase();
