@@ -246,25 +246,37 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor getUserByUsername(String username) {
+    public Cursor getUserByUsername(String username){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users where username = ? ", new String[]{username});
         return cursor;
     }
 
-    public Cursor getUserByEmailAddress(String emailAddress) {
+    public Cursor getUserByEmailAddress(String emailAddress){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users where email = ? ", new String[]{emailAddress});
         return cursor;
     }
 
-    public Cursor getUserByPhoneNumber(String phone) {
+    public Cursor getUserByPhoneNumber(String phone){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("select * from Users where phone = ?", new String[]{phone});
         return cursor;
     }
 
-    public Cursor getUserByEmailAndPassword(String email, String password) {
+    public Cursor getAddressByEmail(String email){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select address from Users where email = ?", new String[]{email});
+        return  cursor;
+    }
+
+    public Cursor getPhoneByEmail(String email){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select phone from Users where email = ?", new String[]{email});
+        return  cursor;
+    }
+
+    public Cursor getUserByEmailAndPassword(String email, String password){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("select * from Users where email = ? and password = ?"
                 , new String[]{email, password});
@@ -285,23 +297,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
         long result = DB.insert("Users", null, contentValues);
 
-        if (result == -1) {
+        if (result == -1){
             return false;
         } else {
             return true;
         }
     }
 
-    public boolean resetUserPassword(String emailAddress, String newPassword) {
+    public boolean resetUserPassword(String emailAddress, String newPassword){
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("password", newPassword);
-        Cursor cursor = DB.rawQuery("Select * from Users where email=?", new String[]{emailAddress});
+        Cursor cursor = DB.rawQuery("Select * from Users where email=?", new String [] {emailAddress});
 
-        if (cursor.getCount() > 0) {
+        if (cursor.getCount() > 0){
             long result = DB.update("Users", contentValues, "email=?", new String[]{emailAddress});
 
-            if (result == -1) {
+            if (result == -1){
                 return false;
             } else {
                 return true;
@@ -311,14 +323,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deletedata(String username) {
+    public boolean deletedata(String username){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users where username = ? ", new String[]{username});
 
-        if (cursor.getCount() > 0) {
+        if (cursor.getCount() > 0){
             long result = DB.delete("Users", "username=?", new String[]{username});
 
-            if (result == -1) {
+            if (result == -1){
                 return false;
             } else {
                 return true;
