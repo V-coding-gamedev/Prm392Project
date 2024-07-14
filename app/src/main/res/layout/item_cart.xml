@@ -23,6 +23,7 @@
         android:layout_margin="5dp"
         android:layout_weight="1"
         android:padding="2dp"
+        android:textColor="@color/black"
 
 
         android:text="Nước mắm Phú Quốc chất lượng caoNước mắm Phú Quốc chấchất lượng cao"
@@ -49,6 +50,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:text="10"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="20sp" />
 

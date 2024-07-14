@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+import java.util.ArrayList;
+import com.example.signuploginfirebase.Models.Product;
+
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(@Nullable Context context) {
@@ -182,31 +186,85 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //------------------------------------------------------ //
 
-    public Cursor getData(){
+
+    public void insertSampleProducts() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // Sample products
+        String[][] products = {
+                {"Product 1", "Description 1", "Size 1", "10.0", "100", "50", "1"},
+                {"Product 2", "Description 2", "Size 2", "20.0", "200", "100", "2"},
+                {"Product 3", "Description 3", "Size 3", "30.0", "300", "150", "3"},
+                {"Product 4", "Description 4", "Size 4", "40.0", "400", "200", "4"},
+                {"Product 5", "Description 5", "Size 5", "50.0", "500", "250", "5"},
+                {"Product 6", "Description 6", "Size 6", "60.0", "600", "300", "6"},
+                {"Product 7", "Description 7", "Size 7", "70.0", "700", "350", "7"},
+                {"Product 8", "Description 8", "Size 8", "80.0", "800", "400", "8"},
+                {"Product 9", "Description 9", "Size 9", "90.0", "900", "450", "9"},
+                {"Product 10", "Description 10", "Size 10", "100.0", "1000", "500", "10"}
+        };
+
+        for (String[] product : products) {
+            values.put("name", product[0]);
+            values.put("description", product[1]);
+            values.put("size", product[2]);
+            values.put("unitPrice", Float.parseFloat(product[3]));
+            values.put("unitsInStock", Integer.parseInt(product[4]));
+            values.put("unitsOnOrder", Integer.parseInt(product[5]));
+            values.put("category_id", Integer.parseInt(product[6]));
+            db.insert("Product", null, values);
+        }
+    }
+
+    public List<Product> getListProduct() {
+        List<Product> productList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Product", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Product product = new Product();
+                product.setProduct_id(cursor.getInt(cursor.getColumnIndexOrThrow("product_id")));
+                product.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
+                product.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
+                product.setSize(cursor.getString(cursor.getColumnIndexOrThrow("size")));
+                product.setUnitPrice(cursor.getFloat(cursor.getColumnIndexOrThrow("unitPrice")));
+                product.setUnitsInStock(cursor.getInt(cursor.getColumnIndexOrThrow("unitsInStock")));
+                product.setUnitsOnOrder(cursor.getInt(cursor.getColumnIndexOrThrow("unitsOnOrder")));
+                product.setCategory_id(cursor.getInt(cursor.getColumnIndexOrThrow("category_id")));
+                productList.add(product);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return productList;
+    }
+
+    public Cursor getData() {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users", null);
         return cursor;
     }
 
-    public Cursor getUserByUsername(String username){
+    public Cursor getUserByUsername(String username) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users where username = ? ", new String[]{username});
         return cursor;
     }
 
-    public Cursor getUserByEmailAddress(String emailAddress){
+    public Cursor getUserByEmailAddress(String emailAddress) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users where email = ? ", new String[]{emailAddress});
         return cursor;
     }
 
-    public Cursor getUserByPhoneNumber(String phone){
+    public Cursor getUserByPhoneNumber(String phone) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("select * from Users where phone = ?", new String[]{phone});
         return cursor;
     }
 
-    public Cursor getUserByEmailAndPassword(String email, String password){
+    public Cursor getUserByEmailAndPassword(String email, String password) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("select * from Users where email = ? and password = ?"
                 , new String[]{email, password});
@@ -227,23 +285,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
         long result = DB.insert("Users", null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
             return false;
         } else {
             return true;
         }
     }
 
-    public boolean resetUserPassword(String emailAddress, String newPassword){
+    public boolean resetUserPassword(String emailAddress, String newPassword) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("password", newPassword);
-        Cursor cursor = DB.rawQuery("Select * from Users where email=?", new String [] {emailAddress});
+        Cursor cursor = DB.rawQuery("Select * from Users where email=?", new String[]{emailAddress});
 
-        if (cursor.getCount() > 0){
+        if (cursor.getCount() > 0) {
             long result = DB.update("Users", contentValues, "email=?", new String[]{emailAddress});
 
-            if (result == -1){
+            if (result == -1) {
                 return false;
             } else {
                 return true;
@@ -253,14 +311,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deletedata(String username){
+    public boolean deletedata(String username) {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users where username = ? ", new String[]{username});
 
-        if (cursor.getCount() > 0){
+        if (cursor.getCount() > 0) {
             long result = DB.delete("Users", "username=?", new String[]{username});
 
-            if (result == -1){
+            if (result == -1) {
                 return false;
             } else {
                 return true;

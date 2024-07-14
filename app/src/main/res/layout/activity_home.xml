@@ -10,12 +10,11 @@
 
 <include layout="@layout/menu_top" />
 
-    <Button
-        android:id="@+id/addtocart"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productRecycler"
+        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"
-        android:text="Add To Cart"
-        android:textSize="30sp" />
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>
