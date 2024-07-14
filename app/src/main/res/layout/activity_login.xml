@@ -56,6 +56,7 @@
                 android:inputType="textPassword"
                 android:padding="8dp"
                 android:hint="Mật khẩu"
+
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp"/>

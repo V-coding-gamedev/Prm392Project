@@ -51,6 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String _user = signupEmail.getText().toString().trim();
+                String _username = _user.substring(0, _user.indexOf('@'));
                 String pass = signupPassword.getText().toString().trim();
                 String confirmPass = signUpConfirmPassword.getText().toString().trim();
                 String phone = signUpPhone.getText().toString().trim();
@@ -60,16 +61,16 @@ public class SignUpActivity extends AppCompatActivity {
                 boolean checkPhoneValidation = validateInputtedPhone(phone);
 
                 if (_user.isEmpty()){
-                    signupEmail.setError("Email cannot be empty");
+                    signupEmail.setError("Trường email không được bỏ trống");
                 }
                 else if (pass.isEmpty()){
-                    signupPassword.setError("Password cannot be empty");
+                    signupPassword.setError("Trường mật khẩu không được bỏ trống");
                 }
                 else if (!checkConfirmPasswordValidation){
-                    Toast.makeText(SignUpActivity.this, "Confirm password does not match the enterred password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Mật khẩu xác nhận không trùng với mật khẩu đăng ký", Toast.LENGTH_SHORT).show();
                 }
                 else if (!checkPhoneValidation){
-                    Toast.makeText(SignUpActivity.this, "Phone must only contain numbers.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Điển thoại chỉ được phép chứ số. ", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     auth.createUserWithEmailAndPassword(_user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -83,24 +84,24 @@ public class SignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
-                                                Toast.makeText(SignUpActivity.this, "SignUp Successful. Please Vefify your email to log in", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SignUpActivity.this, "Đăng ký thành công. Xác nhận email để login", Toast.LENGTH_SHORT).show();
 
-                                                Boolean checkInsertData = DB.insertuserdata(_user, _user, phone, pass, address);
+                                                Boolean checkInsertData = DB.insertuserdata(_username, _user, phone, pass, address, 2);
                                                 if (checkInsertData){
                                                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                                                } else {
+                                                }
+                                                else {
                                                     Toast.makeText(SignUpActivity.this, "Registered Email does not exist!", Toast.LENGTH_SHORT).show();
                                                 }
-
-
-                                            } else {
-                                                Toast.makeText(SignUpActivity.this, "Registered Email does not exist!", Toast.LENGTH_SHORT).show();
+                                            }
+                                            else {
+                                                Toast.makeText(SignUpActivity.this, "Email này đã tồn tại. Sử dụng 1 email khác. ", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
                                 }
                             } else {
-                                Toast.makeText(SignUpActivity.this, "SignUp Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "Đăng ký thất bại. Kiểm tra lại các trường đăng ký", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

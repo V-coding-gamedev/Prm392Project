@@ -30,7 +30,6 @@ public class MyAccountFragment extends Fragment {
                 EditText newPhone = view.findViewById(R.id.registeredPhoneNo);
                 EditText newAddress = view.findViewById(R.id.registeredAddress);
 
-
                 saveChangedData(newUsername, registeredEmail, newPhone, newAddress);
             }
         });
@@ -38,7 +37,6 @@ public class MyAccountFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return view;
-
     }
 
     public void updateTextView(String username, String email, String phone, String address){

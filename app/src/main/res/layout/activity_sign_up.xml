@@ -54,6 +54,7 @@
                 android:layout_marginTop="20dp"
                 android:padding="8dp"
                 android:hint="Mật khẩu"
+                android:inputType="textPassword"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>
@@ -66,6 +67,7 @@
                 android:layout_marginTop="20dp"
                 android:padding="8dp"
                 android:hint="Xác nhận mật khẩu"
+                android:inputType="textPassword"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>

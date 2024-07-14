@@ -4,15 +4,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseUser user;
     private MyAccountFragment myAccountFragment;
     private MyPasswordFragment myPasswordFragment;
+    Integer roleId;
     String email, username, phone, address;
     TextView navHeaderUsername, navHeaderEmail;
     NavigationView navView;
@@ -85,8 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        // navigationView.setNavigationItemSelectedListener(this);
-        // navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) getApplicationContext());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.open_nav, R.string.close_nav);
@@ -102,6 +104,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View navHeader = navView.getHeaderView(0);
         navHeaderUsername = navHeader.findViewById(R.id.navHeaderUsername);
         navHeaderEmail = navHeader.findViewById(R.id.navHeaderEmail);
+
+        cursor = DB.getRoleIdByEmail(email);
+        if (cursor.moveToFirst()){
+            roleId = cursor.getInt(cursor.getColumnIndexOrThrow("role_id"));
+            cursor.close();
+        }
+
+        Toast.makeText(getApplicationContext(), "Role ID: " + roleId, Toast.LENGTH_SHORT).show();
+
+        Menu menu = navView.getMenu();
+        MenuItem userManagementMenu = menu.findItem(R.id.nav_user_management);
+
+        if (roleId == 1){
+            userManagementMenu.setVisible(true);
+        }
+        else if (roleId == 2){
+            userManagementMenu.setVisible(false);
+        }
     }
 
     @Override
@@ -139,13 +159,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
             });
-        } else if (id == R.id.nav_settings){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
-        } else if (id == R.id.nav_share){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareFragment()).commit();
-        } else if (id == R.id.nav_about){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
-        } else if (id == R.id.nav_logout){
+        }
+        else if (id == R.id.nav_user_management){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserManagementFragment()).commit();
+        }
+//        else if (id == R.id.nav_settings){
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+//        }
+//        else if (id == R.id.nav_share){
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareFragment()).commit();
+//        }
+//        else if (id == R.id.nav_about){
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+//        }
+        else if (id == R.id.nav_logout){
             gClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

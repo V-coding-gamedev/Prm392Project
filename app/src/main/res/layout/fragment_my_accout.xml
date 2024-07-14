@@ -81,6 +81,6 @@
         android:text="Lưu"
         android:textColor="@color/white"
         android:layout_marginTop="15dp"
-        android:background="@drawable/button_text_decorator"/>
+        android:backgroundTint="@color/lavender"/>
 
 </LinearLayout>

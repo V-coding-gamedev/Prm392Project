@@ -70,7 +70,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/emailBox"
             app:layout_constraintBottom_toBottomOf="@id/dialogBox"
-            app:layout_constraintEnd_toStartOf="@id/btnReset"/>
+            app:layout_constraintEnd_toStartOf="@id/btnReset"
+            android:backgroundTint="@color/lavender"/>
 
         <Button
             android:layout_width="0dp"
@@ -86,7 +87,8 @@
             app:cornerRadius = "20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/dialogBox"
-            app:layout_constraintStart_toEndOf="@id/btnCancel"/>
+            app:layout_constraintStart_toEndOf="@id/btnCancel"
+            android:backgroundTint="@color/lavender"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

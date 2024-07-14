@@ -66,20 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                 String pass = loginPassword.getText().toString();
                 if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     if (!pass.isEmpty()) {
-//                        auth.signInWithEmailAndPassword(email, pass)
-//                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-//                                    @Override
-//                                    public void onSuccess(AuthResult authResult) {
-//                                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-//                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                                        finish();
-//                                    }
-//                                }).addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                });
 
                         auth.signInWithEmailAndPassword(email, pass)
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -88,24 +74,24 @@ public class LoginActivity extends AppCompatActivity {
                                         if (task.isSuccessful()){
                                             FirebaseUser user = auth.getCurrentUser();
                                             if (user != null && user.isEmailVerified()){
-                                                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
                                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                 finish();
                                             } else {
-                                                Toast.makeText(getApplicationContext(), "Please verify your email address", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), "Hãy xác nhận email trước khi đăng nhập.", Toast.LENGTH_SHORT).show();
                                             }
                                         } else {
-                                            Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "Đăng nhập không thành công. Kiểm tra lại thông tin đăng nhập. ", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
                     } else {
-                        loginPassword.setError("Empty fields are not allowed");
+                        loginPassword.setError("Không được bỏ trống các trường đăng nhập");
                     }
                 } else if (email.isEmpty()) {
-                    loginEmail.setError("Empty fields are not allowed");
+                    loginEmail.setError("Không được bỏ trống các trường đăng nhập");
                 } else {
-                    loginEmail.setError("Please enter correct email");
+                    loginEmail.setError("Hãy điền 1 email với dạng hợp lệ");
                 }
             }
         });
@@ -130,17 +116,17 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         String userEmail = emailBox.getText().toString();
                         if (TextUtils.isEmpty(userEmail) && !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
-                            Toast.makeText(LoginActivity.this, "Enter your registered email id", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Nhập email", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         auth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
-                                    Toast.makeText(LoginActivity.this, "Check your email", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Kiểm tra email!", Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 } else {
-                                    Toast.makeText(LoginActivity.this, "Unable to send, failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Không gửi link đặt lại mật khẩu được.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -152,10 +138,11 @@ public class LoginActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
+
                 if (dialog.getWindow() != null){
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-                }
-                dialog.show();
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+                    }
+                    dialog.show();
             }
         });
     }

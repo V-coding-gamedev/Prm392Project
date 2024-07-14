@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".MainActivity">
+
+    <TableRow>
+
+        <TextView
+            android:layout_column="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="ID"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:text="Name"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_column="2"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginLeft="70dp"
+             />
+
+        <TextView
+            android:layout_column="3"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Delete"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="120dp"/>
+
+        <!--        <TextView-->
+        <!--            android:text="Email"-->
+        <!--            android:textSize="16dp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:layout_column="3"-->
+        <!--            />-->
+
+        <!--        <TextView-->
+        <!--            android:text="Phone"-->
+        <!--            android:textSize="16dp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:layout_column="1"/>-->
+
+        <!--        <TextView-->
+        <!--            android:text="Address"-->
+        <!--            android:textSize="16dp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:layout_column="1"/>-->
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</TableLayout>

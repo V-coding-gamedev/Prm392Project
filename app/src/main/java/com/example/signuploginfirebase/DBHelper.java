@@ -240,6 +240,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return productList;
     }
 
+//------------------------------------------------------ //
+
     public Cursor getData() {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Users", null);
@@ -285,7 +287,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public Boolean insertuserdata(String usernameTXT, String emailTXT, String phoneTXT,
-                                  String passwordTXT, String addressTXT) {
+                                  String passwordTXT, String addressTXT, int roleID) {
 
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -294,6 +296,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("phone", phoneTXT);
         contentValues.put("password", passwordTXT);
         contentValues.put("address", addressTXT);
+        contentValues.put("role_id", roleID);
 
         long result = DB.insert("Users", null, contentValues);
 
@@ -322,13 +325,16 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-
-    public boolean deletedata(String username){
+    public boolean updateuserdata(String username, String email, String phone, String address){
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select * from Users where username = ? ", new String[]{username});
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("phone", phone);
+        contentValues.put("address", address);
+        Cursor cursor = DB.rawQuery("Select * from Users where email = ?", new String[]{email});
 
         if (cursor.getCount() > 0){
-            long result = DB.delete("Users", "username=?", new String[]{username});
+            long result = DB.update("Users", contentValues, "email=?", new String[]{email});
 
             if (result == -1){
                 return false;
@@ -338,5 +344,47 @@ public class DBHelper extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    public boolean deletedata(Integer user_id){
+        String userId = user_id.toString();
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Users where user_id = ? ", new String[]{userId});
+
+        if (cursor.getCount() > 0){
+            long result = DB.delete("Users", "user_id=?", new String[]{userId});
+
+            if (result == -1){
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public void insertRoles(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String[] roles = { "Admin", "User" };
+
+        for (String role : roles) {
+            values.put("role_name", role);
+            db.insert("Role", null, values);
+        }
+    }
+
+    public void deleteRoles() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Role", "role_id BETWEEN ? AND ?", new String[]{"99", "120"});
+        db.close();
+    }
+
+    public Cursor getRoleIdByEmail(String email){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select role_id from Users where email = ?", new String[]{email});
+        return cursor;
     }
 }
