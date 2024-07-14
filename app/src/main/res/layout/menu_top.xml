@@ -16,7 +16,7 @@
         android:textColorLink="#24D8A0" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/menuOption"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="Button" />

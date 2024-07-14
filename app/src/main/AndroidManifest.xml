@@ -13,6 +13,16 @@
         android:theme="@style/Theme.SignUpLoginFirebase"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".Cart.CardActivity"
             android:exported="true">
             <intent-filter>
@@ -21,27 +31,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.SignUpLoginFirebase">
-
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
+
         <activity
             android:name=".OrderListActivity"
             android:exported="false" />
 
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
+
         <activity
             android:name=".SignUpActivity"
             android:exported="true">
-
         </activity>
-    </application>
 
+    </application>
 </manifest>

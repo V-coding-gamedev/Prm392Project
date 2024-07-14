@@ -88,6 +88,99 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists Payments");
         onCreate(db);
     }
+//---------------------------ORDERS--------------------------- //
+
+    // Create Order
+    public long createOrder(String orderDate, String status, float totalAmount, String startDate, String endDate, String shipAddress, int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("orderDate", orderDate);
+        values.put("status", status);
+        values.put("totalAmount", totalAmount);
+        values.put("startDate", startDate);
+        values.put("endDate", endDate);
+        values.put("shipAddress", shipAddress);
+        values.put("user_id", userId);
+        return db.insert("Orders", null, values);
+    }
+
+    // Read Order
+    public Cursor readOrder(int orderId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM Orders WHERE order_id = ?";
+        return db.rawQuery(query, new String[]{String.valueOf(orderId)});
+    }
+
+    // Update Order
+    public int updateOrder(int orderId, String orderDate, String status, float totalAmount, String startDate, String endDate, String shipAddress, int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("orderDate", orderDate);
+        values.put("status", status);
+        values.put("totalAmount", totalAmount);
+        values.put("startDate", startDate);
+        values.put("endDate", endDate);
+        values.put("shipAddress", shipAddress);
+        values.put("user_id", userId);
+        return db.update("Orders", values, "order_id = ?", new String[]{String.valueOf(orderId)});
+    }
+
+    // Delete Order
+    // Delete Order and associated Order Details
+    public int deleteOrder(int orderId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            // Delete order details associated with the order
+            db.delete("Order_Details", "order_id = ?", new String[]{String.valueOf(orderId)});
+            // Delete the order
+            int rowsDeleted = db.delete("Orders", "order_id = ?", new String[]{String.valueOf(orderId)});
+            db.setTransactionSuccessful();
+            return rowsDeleted;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+
+    //--------------------------ORDER DETAILS--------------------------- //
+    // Create Order Detail
+    public long createOrderDetail(int orderId, int productId, int quantity, float unitPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("order_id", orderId);
+        values.put("product_id", productId);
+        values.put("quantity", quantity);
+        values.put("unit_price", unitPrice);
+        return db.insert("Order_Details", null, values);
+    }
+
+    // Read Order Detail
+    public Cursor readOrderDetail(int orderId, int productId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM Order_Details WHERE order_id = ? AND product_id = ?";
+        return db.rawQuery(query, new String[]{String.valueOf(orderId), String.valueOf(productId)});
+    }
+
+    // Update Order Detail
+    public int updateOrderDetail(int orderId, int productId, int quantity, float unitPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("quantity", quantity);
+        values.put("unit_price", unitPrice);
+        return db.update("Order_Details", values, "order_id = ? AND product_id = ?", new String[]{String.valueOf(orderId), String.valueOf(productId)});
+    }
+
+    // Delete Order Detail
+    public int deleteOrderDetail(int orderId, int productId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("Order_Details", "order_id = ? AND product_id = ?", new String[]{String.valueOf(orderId), String.valueOf(productId)});
+    }
+
+//------------------------------------------------------ //
 
     public Cursor getData(){
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -113,6 +206,18 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getAddressByEmail(String email){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select address from Users where email = ?", new String[]{email});
+        return  cursor;
+    }
+
+    public Cursor getPhoneByEmail(String email){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select phone from Users where email = ?", new String[]{email});
+        return  cursor;
+    }
+
     public Cursor getUserByEmailAndPassword(String email, String password){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("select * from Users where email = ? and password = ?"
@@ -120,19 +225,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void insertOrder(String orderDate, String status, double totalAmount, String startDate, String endDate, String shipAddress, int userId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("orderDate", orderDate);
-        contentValues.put("status", status);
-        contentValues.put("totalAmount", totalAmount);
-        contentValues.put("startDate", startDate);
-        contentValues.put("endDate", endDate);
-        contentValues.put("shipAddress", shipAddress);
-        contentValues.put("user_id", userId);
-        db.insert("Orders", null, contentValues);
-        db.close();
-    }
 
     public Boolean insertuserdata(String usernameTXT, String emailTXT, String phoneTXT,
                                   String passwordTXT, String addressTXT) {
@@ -162,6 +254,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor.getCount() > 0){
             long result = DB.update("Users", contentValues, "email=?", new String[]{emailAddress});
+
+            if (result == -1){
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean updateuserdata(String username, String email, String phone, String address){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("phone", phone);
+        contentValues.put("address", address);
+        Cursor cursor = DB.rawQuery("Select * from Users where email = ?", new String[]{email});
+
+        if (cursor.getCount() > 0){
+            long result = DB.update("Users", contentValues, "email=?", new String[]{email});
 
             if (result == -1){
                 return false;
