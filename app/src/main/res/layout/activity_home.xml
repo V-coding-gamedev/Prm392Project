@@ -15,6 +15,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <Spinner
+            android:id="@+id/spinerCategory"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+
+        </Spinner>
+
         <EditText
             android:id="@+id/textSearch"
             android:layout_width="0dp"

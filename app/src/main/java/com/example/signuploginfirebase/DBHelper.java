@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import com.example.signuploginfirebase.Models.Category;
 import com.example.signuploginfirebase.Models.Order;
 import com.example.signuploginfirebase.Models.OrderDetail;
 import com.example.signuploginfirebase.Models.Product;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(@Nullable Context context) {
-        super(context, "FashionShop.db", null, 2);
+        super(context, "FashionShop.db", null, 4);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("create Table Categories (category_id integer primary key autoincrement, " +
                 "name text not null," +
-                "descripteion text not null)");
+                "description text not null)");
 
         db.execSQL("create Table Product (product_id integer primary key autoincrement, " +
                 "name text not null, " +
@@ -100,6 +101,52 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    //---------------------------CATEGORIES--------------------------- //
+    public List<Category> getListCategory() {
+        List<Category> categoryList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Categories", null);
+
+        while (cursor.moveToNext()) {
+            Category category = new Category();
+            category.setCategory_id(cursor.getInt(cursor.getColumnIndexOrThrow("category_id")));
+            category.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
+            category.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
+            categoryList.add(category);
+        }
+        cursor.close();
+        return categoryList;
+    }
+
+    public void insertSampleDataIntoCategories() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            db.beginTransaction();
+            // Sample data for Categories
+            String[][] sampleData = {
+                    {"Fashion", "All about fashion"},
+                    {"Electronics", "Gadgets and electronic devices"},
+                    {"Books", "Educational and leisure reading materials"},
+                    {"Home & Kitchen", "Everything for your home and kitchen"},
+                    {"Toys & Games", "Fun for children and adults"},
+                    {"Sports", "Everything sports-related"},
+                    {"Beauty & Personal Care", "Personal care items"},
+                    {"Groceries", "Your daily essentials"},
+                    {"Automotive", "For your car and bike needs"},
+                    {"Music", "Musical instruments and music related items"}
+            };
+
+            for (String[] entry : sampleData) {
+                ContentValues values = new ContentValues();
+                values.put("name", entry[0]);
+                values.put("description", entry[1]); // Correct the column name to "description"
+                db.insert("Categories", null, values);
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
 //---------------------------PRODUCTS--------------------------- //
 
     // DBHelper.java
@@ -124,6 +171,28 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor.close();
             return null;
         }
+    }
+
+    public List<Product> getProductByCateID(int cateId) {
+        List<Product> productList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM Product WHERE category_id = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(cateId)});
+
+        while (cursor.moveToNext()) { // Corrected to moveToNext()
+            Product product = new Product();
+            product.setProduct_id(cursor.getInt(cursor.getColumnIndexOrThrow("product_id")));
+            product.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
+            product.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
+            product.setSize(cursor.getString(cursor.getColumnIndexOrThrow("size")));
+            product.setUnitPrice(cursor.getFloat(cursor.getColumnIndexOrThrow("unitPrice")));
+            product.setUnitsInStock(cursor.getInt(cursor.getColumnIndexOrThrow("unitsInStock")));
+            product.setUnitsOnOrder(cursor.getInt(cursor.getColumnIndexOrThrow("unitsOnOrder")));
+            product.setCategory_id(cursor.getInt(cursor.getColumnIndexOrThrow("category_id")));
+            productList.add(product); // Add the product to the list
+        }
+        cursor.close();
+        return productList;
     }
 
     public List<Product> searchProductsByName(String searchName) {

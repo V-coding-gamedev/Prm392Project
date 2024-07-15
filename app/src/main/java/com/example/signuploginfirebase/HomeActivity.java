@@ -1,16 +1,22 @@
 package com.example.signuploginfirebase;
 
+import android.content.BroadcastReceiver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,10 +26,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.signuploginfirebase.Cart.CardActivity;
+import com.example.signuploginfirebase.Models.Category;
 import com.example.signuploginfirebase.Models.Product;
 import com.example.signuploginfirebase.Models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +47,27 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
 
     EditText search;
     Button searchButton;
-
+    private BroadcastReceiver addToCartReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Extract product information from the intent
+            int productId = intent.getIntExtra("product_id", -1);
+            if (productId != -1) {
+                // Assuming you have a method to find a product by ID and add it to the cart
+                DBHelper db = new DBHelper(context);
+                Product product = db.getProductByID(productId);
+                if (product != null) {
+                    onAddToCartClick(product);
+                }
+            }
+        }
+    };
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Unregister the receiver
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(addToCartReceiver);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,27 +78,30 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        // Register the broadcast receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(addToCartReceiver,
+                new IntentFilter("com.example.signuploginfirebase.ACTION_ADD_TO_CART"));
+//------------------------------------------------------ Insert sample data
         DBHelper db = new DBHelper(this);
-
-
+//        db.insertSampleDataIntoCategories();
+//        db.getAllUsers();
 //        db.insertSampleProducts();
+//
 //        boolean isInserted = db.insertUser(4488, "Dam");
 //        if (isInserted) {
 //            Log.d("DBHelper", "User inserted successfully");
 //        } else {
 //            Log.d("DBHelper", "Error inserting user");
 //        }
-        db.getAllUsers();
+
 
         RecyclerView recyclerView = findViewById(R.id.productRecycler);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // Số 2 là số cột trong grid
         List<Product> productList = db.getListProduct();
-        // Thêm dữ liệu sản phẩm vào productList
         ProductAdapter adapter = new ProductAdapter(productList, this);
         recyclerView.setAdapter(adapter);
 
-//search
+//------------------------------------------------------ search
         search = findViewById(R.id.textSearch);
         searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(v -> {
@@ -84,7 +115,43 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
             Intent intent = new Intent(this, CardActivity.class);
             startActivity(intent);
         });
+        //------------------------------------------------------ Category
+
+
+        Spinner spinner = findViewById(R.id.spinerCategory);
+        List<Category> liscate = db.getListCategory();
+        String[] items = new String[liscate.size() + 1];
+        items[0] = "All";
+        for (int i = 1; i < liscate.size() + 1; i++) {
+            items[i] = liscate.get(i - 1).getName();
+        }
+        ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        spinner.setAdapter(adapterCate);
+        //------------------------------------------------------
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    List<Product> productList = db.getListProduct();
+                    ProductAdapter adapter = new ProductAdapter(productList, HomeActivity.this);
+                    recyclerView.setAdapter(adapter);
+                    return;
+                }
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                List<Product> searchList = db.getProductByCateID(position + 1);
+                ProductAdapter newAdapter = new ProductAdapter(searchList, HomeActivity.this); // Corrected the missing argument
+                recyclerView.setAdapter(newAdapter);
+                Toast.makeText(HomeActivity.this, "Selected: " + selectedItem + " post : " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
     }
+
 
     User getUserFromStore() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -102,15 +169,16 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
     public Order createNewOrder() {
         Order newOrder = new Order();
         // Get the current user
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
+        User user = getUserFromStore();
+        Log.d("DAM", "User: " + user.toString());
+        if (user != null) {
             // Create a new Order object
-            Log.d("DAM", "User Name: " + currentUser.getDisplayName());
+            Log.d("DAM", "User Name: " + user.getUsername());
             // Save the Order object to SQLite database
             DBHelper dbHelper = new DBHelper(this);
 
             Order o = null;
-            User user = getUserFromStore();
+
             int uid = user.user_id;
             Log.d("DAM", "UID: " + uid);
             try {
@@ -192,7 +260,17 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.productName.setText(product.name);
-
+        holder.productImage.setOnClickListener(v -> {
+            Integer productId = product.getProduct_id(); // Assuming getProduct_id() returns Integer
+            if (productId != null) {
+                Intent intent = new Intent(v.getContext(), ProductDetail.class);
+                intent.putExtra("product_id", String.valueOf(productId)); // Convert to String
+                v.getContext().startActivity(intent);
+            } else {
+                // Handle the case where product ID is null
+                Toast.makeText(v.getContext(), "Product ID is null", Toast.LENGTH_SHORT).show();
+            }
+        });
         holder.addToCartButton.setOnClickListener(v -> listener.onAddToCartClick(product));
 
     }
@@ -210,7 +288,7 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            productImage = itemView.findViewById(R.id.imageProduct);
             productName = itemView.findViewById(R.id.textProduct);
             addToCartButton = itemView.findViewById(R.id.addToCartButton);
         }
