@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -45,6 +46,19 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    public void SaveUser(String email, String pass){
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        // Xóa dữ liệu
+        editor.remove("email");
+        editor.remove("pass");
+        editor.apply();
+
+        editor.putString("email", email);
+        editor.putString("pass", pass);
+        editor.apply();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +89,9 @@ public class LoginActivity extends AppCompatActivity {
                                             FirebaseUser user = auth.getCurrentUser();
                                             if (user != null && user.isEmailVerified()){
 
+
+                                                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                                SaveUser(email, pass);
                                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                 finish();
                                             } else {
