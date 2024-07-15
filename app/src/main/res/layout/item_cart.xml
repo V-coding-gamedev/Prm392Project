@@ -16,26 +16,42 @@
         android:layout_marginLeft="10dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/descriptionItem"
-        android:layout_width="130dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
         android:layout_weight="1"
-        android:padding="2dp"
-        android:textColor="@color/black"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/descriptionItem"
+            android:layout_width="130dp"
+            android:layout_height="66dp"
+            android:layout_margin="5dp"
+            android:layout_weight="3"
+            android:padding="2dp"
+            android:text="Nước mắm Phú Quốc chất lượng caoNước mắm Phú Quốc chấchất lượng cao"
 
 
-        android:text="Nước mắm Phú Quốc chất lượng caoNước mắm Phú Quốc chấchất lượng cao"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/giaProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="4sp"
+            android:text="TextView" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="50dp"
         android:layout_height="match_parent"
+        android:layout_marginRight="8dp"
         android:layout_weight="1"
-        android:paddingVertical="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingVertical="20dp">
 
         <Button
             android:id="@+id/buttonUp"
@@ -47,11 +63,12 @@
         <TextView
             android:id="@+id/numbItem"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="25dp"
             android:layout_weight="0.5"
+            android:padding="5dp"
             android:text="10"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <Button

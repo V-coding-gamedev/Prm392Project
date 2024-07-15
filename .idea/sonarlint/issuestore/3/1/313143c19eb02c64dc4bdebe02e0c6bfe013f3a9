@@ -1,0 +1,13 @@
+
+p
+java:S1604-"(Make this anonymous inner class a lambda(Â¼Âƒýÿÿÿÿ8µÎÔ®‹2J$3a9cbfa0-b1bb-43ba-b693-9e388ab66bbf
+k
+java:S16044"(Make this anonymous inner class a lambda(üÑÔ²8µÎÔ®‹2J$07b74db3-efbc-4463-bd95-20659e4e6332
+š
+java:S1659"WDeclare "editTextProductDescription" and all following declarations on a separate line.(êÜ”¯8ÌÎÔ®‹2J$3e3135ee-b6eb-48ff-900f-8536248eb2df
+y
+java:S1659"1Declare "buttonDeleteProduct" on a separate line.(ÒÞÚ‚ûÿÿÿÿ8ÌÎÔ®‹2J$75d9c684-3650-4f17-b7b5-48c8fea8ff0d
+ª
+java:S1450"bRemove the "buttonDeleteProduct" field and declare it as a local variable in the relevant methods.(ÒÞÚ‚ûÿÿÿÿ8ÍÎÔ®‹2J$efdcaa43-14dd-4599-a38c-e0a80df5c2e8
+¨
+java:S1450"`Remove the "buttonEditProduct" field and declare it as a local variable in the relevant methods.(ÒÞÚ‚ûÿÿÿÿ8ÍÎÔ®‹2J$a5e9d117-762e-4c54-8a5f-94f90477146d
