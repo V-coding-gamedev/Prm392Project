@@ -13,14 +13,14 @@
         android:theme="@style/Theme.SignUpLoginFirebase"
         tools:targetApi="31">
         <activity
-            android:name=".Cart.CardActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".EditProductActivity"
+            android:exported="true" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="true"
-           >
+            android:name=".CreateProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,20 +28,24 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Cart.CardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".OrderListActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
