@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements ProductAdapter.OnAddToCartClickListener {
 
 
     @Override
@@ -46,17 +47,22 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         DBHelper db = new DBHelper(this);
-        db.insertSampleProducts();
+
+
+//        db.insertSampleProducts();
+//        boolean isInserted = db.insertUser(4488, "Dam");
+//        if (isInserted) {
+//            Log.d("DBHelper", "User inserted successfully");
+//        } else {
+//            Log.d("DBHelper", "Error inserting user");
+//        }
+        db.getAllUsers();
+
         RecyclerView recyclerView = findViewById(R.id.productRecycler);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // Số 2 là số cột trong grid
-
-
         List<Product> productList = db.getListProduct();
-
-
         // Thêm dữ liệu sản phẩm vào productList
-        Log.d("Com", "complete");
-        ProductAdapter adapter = new ProductAdapter(productList);
+        ProductAdapter adapter = new ProductAdapter(productList, this);
         recyclerView.setAdapter(adapter);
 
         Button cartButton = findViewById(R.id.cartButton);
@@ -72,53 +78,85 @@ public class HomeActivity extends AppCompatActivity {
         return sdf.format(new Date());
     }
 
-    public void createNewOrder() {
+    public Order createNewOrder() {
+        Order newOrder = new Order();
         // Get the current user
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             // Create a new Order object
-            Order newOrder = new Order();
-            newOrder.user_id = Integer.parseInt(currentUser.getUid()); // Set the user_id to the current user's ID
-            newOrder.orderDate = getTodayDate(); // Set the order date (example)
-            newOrder.status = "Pending"; // Set the order status (example)
-            newOrder.totalAmount = 100.0f; // Set the total amount (example)
-            newOrder.startDate = "2023-10-01"; // Set the start date (example)
-            newOrder.endDate = "2023-10-05"; // Set the end date (example)
-            newOrder.shipAddress = "123 Main St"; // Set the shipping address (example)
-
+            Log.d("DAM", "User Name: " + currentUser.getDisplayName());
             // Save the Order object to SQLite database
             DBHelper dbHelper = new DBHelper(this);
-            ContentValues values = new ContentValues();
-            values.put("user_id", newOrder.user_id);
-            values.put("order_date", newOrder.orderDate);
-            values.put("status", newOrder.status);
-            values.put("total_amount", newOrder.totalAmount);
-            values.put("start_date", newOrder.startDate);
-            values.put("end_date", newOrder.endDate);
-            values.put("ship_address", newOrder.shipAddress);
 
-            long result = dbHelper.getWritableDatabase().insert("Orders", null, values);
-            if (result != -1) {
-                // Order successfully created
-                System.out.println("Order created with ID: " + result);
+            Order o = null;
+            int uid = 4488;
+            Log.d("DAM", "UID: " + uid);
+            try {
+                o = dbHelper.getPendingOrder(uid);
+            } catch (Exception e) {
+                Log.d("DAM", "Lỗi DB");
+            }
+            //nếu có order nào đang ở status là Pending thì không tạo mới
+            if (o != null) {
+                Log.d("DAM", "Đã có order");
+                return o;
             } else {
-                // Failed to create order
-                System.err.println("Error creating order.");
+//                newOrder.user_id = Integer.parseInt(currentUser.getUid()); // Set the user_id to the current user's ID
+                newOrder.user_id = 4488; // Set the user_id to the current user's ID
+                newOrder.orderDate = getTodayDate(); // Set the order date (example)
+                newOrder.status = "Pending"; // Set the order status (example)
+                newOrder.totalAmount = 1.0f; // Set the total amount (example)
+                newOrder.startDate = "2023-10-01"; // Set the start date (example)
+                newOrder.endDate = "2023-10-05"; // Set the end date (example)
+                newOrder.shipAddress = "123 Main St"; // Set the shipping address (example)
+                long result = dbHelper.createOrder(newOrder);
+
+                if (result != -1) {
+                    // Order successfully created
+                    System.out.println("Order created with ID: " + result);
+                } else {
+                    // Failed to create order
+                    System.err.println("Error creating order.");
+                }
             }
         } else {
             // No user is signed in
-            System.err.println("No user is signed in.");
+            Intent intentToLogin = new Intent(this, LoginActivity.class);
+            startActivity(intentToLogin);
+            return null;
         }
+        return newOrder;
     }
+
+    @Override
+    public void onAddToCartClick(Product product) {
+        Order order = createNewOrder();
+        Log.d("ORDER", order.toString());
+        DBHelper dbHelper = new DBHelper(this);
+        try {
+            dbHelper.createOrderDetail(order.order_id, product.getProduct_id(), 1, product.getUnitPrice());
+        } catch (Exception e) {
+            Log.d("DAM", "Lỗi khi thêm order detail");
+        }
+        Toast.makeText(this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
+        Log.d("ADD", "add to cart");
+    }
+
 }
 
 
 class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> productList;
+    private OnAddToCartClickListener listener;
 
-    public ProductAdapter(List<Product> productList) {
+    public interface OnAddToCartClickListener {
+        void onAddToCartClick(Product product);
+    }
+
+    public ProductAdapter(List<Product> productList, OnAddToCartClickListener listener) {
         this.productList = productList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -132,6 +170,8 @@ class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHold
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.productName.setText(product.name);
+
+        holder.addToCartButton.setOnClickListener(v -> listener.onAddToCartClick(product));
 
     }
 
