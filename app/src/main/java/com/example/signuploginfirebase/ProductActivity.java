@@ -36,7 +36,7 @@ public class ProductActivity extends AppCompatActivity {
         listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                List<Product> productList = dbHelper.getAllProducts();
+                List<Product> productList = dbHelper.getListProduct();
                 Product selectedProduct = productList.get(position); // Lấy sản phẩm tại vị trí position
                 Intent intent = new Intent(ProductActivity.this, EditProductActivity.class);
                 intent.putExtra("product_id", selectedProduct.getProduct_id());

@@ -13,4 +13,6 @@ l
 java:S1104e"VMake downButton a static final constant or non-public and provide accessors if needed.(¼›Ù 
 n
 java:S1104f"XMake deleteButton a static final constant or non-public and provide accessors if needed.(™Â¶ü
+N
+java:S1153A"1Directly append the argument of String.valueOf().(ââÏî8Ÿæçµ‹2
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ËêÂ„
