@@ -23,3 +23,5 @@ v
 Fapp/src/main/java/com/example/signuploginfirebase/PaymentActivity.java,1\9\196d2fab44eeb67148f9d4417943c32f32e7525e
 s
 Capp/src/main/java/com/example/signuploginfirebase/HomeActivity.java,9\9\991c4cc44718cb25746e53eea3b28524cff3ddb9
+t
+Dapp/src/main/java/com/example/signuploginfirebase/ProductDetail.java,f\d\fd18c0246cadcda481d08349ec244dbe212d115d

@@ -1,91 +1,91 @@
 
 ‘
-java:S1192Ş"HDefine a constant instead of duplicating this literal "endDate" 4 times.(ìº·ºşÿÿÿÿ8ŞŠå®‹2J$b52a3f70-948e-4018-abe6-80b4b77683a8
-e
-java:S1192 "HDefine a constant instead of duplicating this literal "Product" 3 times.(úÖ–Q8—¥Â°‹2
-Š
-java:S1192»"FDefine a constant instead of duplicating this literal "Users" 5 times.( ô¶É8„ìœ°‹2J$2e92a6cf-e538-42f8-9cd7-1f44a4a176e9
-’
-java:S1192µ"IDefine a constant instead of duplicating this literal "password" 5 times.(Õºøÿÿÿÿ8ŞŠå®‹2J$a4d4b9db-573e-4748-98f0-ae7cdcbb594f
-
-java:S1192q"KDefine a constant instead of duplicating this literal "product_id" 6 times.(ƒ¿¥š8ŞŠå®‹2J$5aa6eeb5-7b3c-4e52-8e21-75d843161a77
-
-java:S1192u"JDefine a constant instead of duplicating this literal "unitPrice" 7 times.(®…·£8ŞŠå®‹2J$374efd94-5049-43a8-8603-7f44f93ace4d
-
-java:S1192·"FDefine a constant instead of duplicating this literal "phone" 5 times.(Ó¿¤ÿÿÿÿÿ8ŞŠå®‹2J$3ca575b3-00e2-4ecd-8636-a8b78a1ed2c2
+java:S1192£"HDefine a constant instead of duplicating this literal "endDate" 4 times.(ìº·ºşÿÿÿÿ8ŞŠå®‹2J$a9a05372-0fd4-4fb4-b4c7-86576c1b0d63
 ‹
-java:S1192à"HDefine a constant instead of duplicating this literal "user_id" 7 times.(‹ô¨Y8®‰ °‹2J$35092c4c-0650-49d0-b509-30d728bb3c47
-
-java:S1192÷"IDefine a constant instead of duplicating this literal "order_id" 4 times.(„× ¶8†ìœ°‹2J$625b1487-3b31-45ee-8e31-78f9b66abdb0
-“
-java:S1192İ"JDefine a constant instead of duplicating this literal "startDate" 4 times.(‡‚¥ôüÿÿÿÿ8ßŠå®‹2J$9d2e8f3e-8fa2-456f-a084-d5b16f4dacec
-
-java:S1192Û"GDefine a constant instead of duplicating this literal "status" 4 times.(ï³²ÿÿÿÿÿ8†ìœ°‹2J$5bd3a713-8b51-4765-b14e-500a33a32dcb
-
-java:S1192á"GDefine a constant instead of duplicating this literal "Orders" 3 times.(âä•šùÿÿÿÿ8†ìœ°‹2J$7747c8da-3e78-454d-b777-0d9fa5f8537f
-
-java:S1192w"MDefine a constant instead of duplicating this literal "unitsOnOrder" 7 times.(‹°ÿÃ8àŠå®‹2J$9297656d-bac4-4a68-98bb-76e49038e6e7
-
-java:S1192x"LDefine a constant instead of duplicating this literal "category_id" 7 times.(“º¡’8àŠå®‹2J$29550b69-73ec-4de5-953b-3ed89f3c180e
-
-java:S1192¶"FDefine a constant instead of duplicating this literal "email" 4 times.(±ìä€üÿÿÿÿ8àŠå®‹2J$8f0f65d2-f00c-4a6a-b4ca-33e6b7ff5acf
-•
-java:S1192v"MDefine a constant instead of duplicating this literal "unitsInStock" 7 times.(¯†Œàıÿÿÿÿ8àŠå®‹2J$799b80c0-62f6-4708-9ad9-884748cf6f50
-Œ
-java:S1192¸"HDefine a constant instead of duplicating this literal "address" 5 times.(êê×8àŠå®‹2J$8345d9cb-cf87-4e51-8bae-310143dd8c70
-‘
-java:S1192¹"HDefine a constant instead of duplicating this literal "role_id" 3 times.(‰ŒÂÑúÿÿÿÿ8‡ìœ°‹2J$8186ff59-24b0-4dd8-926d-1f56cf1f540b
-–
-java:S1192‘"MDefine a constant instead of duplicating this literal "order_id = ?" 3 times.(Äá éÿÿÿÿÿ8‡ìœ°‹2J$134f933b-a01a-4395-86b2-755d7a71f5ac
-
-java:S1192Ü"LDefine a constant instead of duplicating this literal "totalAmount" 4 times.(Üä¢Æ8âŠå®‹2J$40409a11-9df4-4141-9831-9646a6bb0cbe
-
-java:S1192Ú"JDefine a constant instead of duplicating this literal "orderDate" 4 times.(Ââ„à8âŠå®‹2J$3955f91b-0b08-4071-b001-fbd00fdc2286
-
-java:S1192s"LDefine a constant instead of duplicating this literal "description" 7 times.(Æ¸Ü¹8ŒÒ›°‹2J$a67f701f-4335-4b33-92a2-d5849c6fdb1b
-
-java:S1192Ç"IDefine a constant instead of duplicating this literal "quantity" 3 times.(à¦Êë8ˆìœ°‹2J$42eef03c-2161-40fa-b679-11b675ab3a28
+java:S1192å"HDefine a constant instead of duplicating this literal "Product" 3 times.(úÖ–Q8—¥Â°‹2J$90ab79ba-30f6-46de-986a-f1de8fd9b609
+Š
+java:S1192€"FDefine a constant instead of duplicating this literal "Users" 5 times.( ô¶É8„ìœ°‹2J$1b1c05c0-8d5d-456e-a7dc-a2b9798b63e2
 ’
-java:S1192²"NDefine a constant instead of duplicating this literal "Order_Details" 4 times.(ÈËÙ³8ˆìœ°‹2J$6b5d534f-8a17-425c-a7da-ab8b28d035a7
-•
-java:S1192ß"LDefine a constant instead of duplicating this literal "shipAddress" 4 times.(ø·¢Ùøÿÿÿÿ8£¢Ÿ°‹2J$32b79583-9497-4027-ac7c-9ebfbdf8121c
+java:S1192ú"IDefine a constant instead of duplicating this literal "password" 5 times.(Õºøÿÿÿÿ8ŞŠå®‹2J$67341f3f-64ae-495e-8e77-e4d0bba01e76
+i
+java:S1192 "KDefine a constant instead of duplicating this literal "product_id" 7 times.(ƒ¿¥š8µ«¼‹2
+h
+java:S1192¤"JDefine a constant instead of duplicating this literal "unitPrice" 8 times.(®…·£8‘µ«¼‹2
+
+java:S1192ü"FDefine a constant instead of duplicating this literal "phone" 5 times.(Ó¿¤ÿÿÿÿÿ8ŞŠå®‹2J$ae177e43-f60a-4602-a0d6-42b6dc1e9c1f
+‹
+java:S1192¥"HDefine a constant instead of duplicating this literal "user_id" 7 times.(‹ô¨Y8®‰ °‹2J$c66fec3b-7c1f-42e9-ad6f-e06905d4dff5
 
-java:S1192´"IDefine a constant instead of duplicating this literal "username" 5 times.(àÛš8ãŠå®‹2J$1657442b-a576-4f37-9dbc-73670cb5c92a
-™	java:S117Ö"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8‹ìœ°‹2J$a1e857e2-c89d-4ad2-b835-97bb6964c5d5
-™	java:S117Ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$db2ea0b8-cf92-45fa-8b01-44f98ecf970e
-™	java:S117â"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$4acd4a05-0fc8-438a-93ef-f616d9cac5da
-™	java:S117è"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$9ea659da-d8e7-44ae-bb81-ce38399846b3
-™	java:S117î"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$2c3a511e-15fe-4fb1-94a6-6599709ec6c5
-™	java:S117ô"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$89798848-5b56-4066-b685-dfdd6396c2c2
-™	java:S117ú"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$eeb86099-2570-48ee-b482-071001911c3e
-™	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$c76b0e89-6213-40c0-b2af-de82e1663093
-™	java:S117—"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$210eee09-a6b3-4a12-ab7b-2e1b2b4a60b2
-™	java:S117©"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$2035cd5d-91cf-4f0d-8859-6df3bb5a0481
-™	java:S117¼"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$fbf037ab-b1ce-4890-a480-4792cee0f806
-™	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$203ccf0f-cc60-41dd-b61f-e5185377d160
+java:S1192¼"IDefine a constant instead of duplicating this literal "order_id" 4 times.(„× ¶8†ìœ°‹2J$45ae39eb-d48f-4196-b2b7-4b0a6362fc6f
+“
+java:S1192¢"JDefine a constant instead of duplicating this literal "startDate" 4 times.(‡‚¥ôüÿÿÿÿ8ßŠå®‹2J$a19bc87b-fc4d-46a7-9612-67426e5cfbf4
+
+java:S1192 "GDefine a constant instead of duplicating this literal "status" 4 times.(ï³²ÿÿÿÿÿ8†ìœ°‹2J$34a22151-df57-4390-9822-c3d8e8254e55
+
+java:S1192¦"GDefine a constant instead of duplicating this literal "Orders" 3 times.(âä•šùÿÿÿÿ8†ìœ°‹2J$48afa18f-c59f-4c6e-8314-634f75f06d84
+k
+java:S1192¦"MDefine a constant instead of duplicating this literal "unitsOnOrder" 8 times.(‹°ÿÃ8’µ«¼‹2
+i
+java:S1192p"LDefine a constant instead of duplicating this literal "category_id" 9 times.(ÂŸÌğ8“µ«¼‹2
+
+java:S1192û"FDefine a constant instead of duplicating this literal "email" 4 times.(±ìä€üÿÿÿÿ8àŠå®‹2J$ae56f9c3-6ced-41d5-843a-6227cc8904d1
+p
+java:S1192¥"MDefine a constant instead of duplicating this literal "unitsInStock" 8 times.(¯†Œàıÿÿÿÿ8“µ«¼‹2
+Œ
+java:S1192ı"HDefine a constant instead of duplicating this literal "address" 5 times.(êê×8àŠå®‹2J$36f00e5f-c929-4070-9060-e5d95000c2a6
+‘
+java:S1192ş"HDefine a constant instead of duplicating this literal "role_id" 3 times.(‰ŒÂÑúÿÿÿÿ8‡ìœ°‹2J$c078f606-56bd-4780-ade5-c669432e5ddd
+–
+java:S1192Ö"MDefine a constant instead of duplicating this literal "order_id = ?" 3 times.(Äá éÿÿÿÿÿ8‡ìœ°‹2J$0e6dc2bc-35c4-481d-b5b8-a0a7c172529c
+
+java:S1192¡"LDefine a constant instead of duplicating this literal "totalAmount" 4 times.(Üä¢Æ8âŠå®‹2J$e7873ed6-587d-4d35-b7bf-c61e4d53b903
+
+java:S1192Ÿ"JDefine a constant instead of duplicating this literal "orderDate" 4 times.(Ââ„à8âŠå®‹2J$280e697c-a377-4252-8105-b18edf4c32c2
+j
+java:S1192r"MDefine a constant instead of duplicating this literal "description" 10 times.(ºÂÏ£8”µ«¼‹2
+
+java:S1192Œ"IDefine a constant instead of duplicating this literal "quantity" 3 times.(à¦Êë8ˆìœ°‹2J$8e9741bf-a608-40bb-8350-bcd32c79a5be
+’
+java:S1192÷"NDefine a constant instead of duplicating this literal "Order_Details" 4 times.(ÈËÙ³8ˆìœ°‹2J$2596add0-677b-4bc4-baf1-5e35177668da
+•
+java:S1192¤"LDefine a constant instead of duplicating this literal "shipAddress" 4 times.(ø·¢Ùøÿÿÿÿ8£¢Ÿ°‹2J$449b7fb2-3dbb-4feb-b37d-82f7d89a6f92
+
+java:S1192ù"IDefine a constant instead of duplicating this literal "username" 5 times.(àÛš8ãŠå®‹2J$6014c893-f190-40eb-9c9b-497a387eec34
+™	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8‹ìœ°‹2J$ef58572d-ccbb-4e59-8f23-9ca847919ad2
+™	java:S117¡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$1c8d0ba9-e7b3-433e-ab90-752fe867fbd4
+™	java:S117§"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$6fafe735-01e8-4be8-a335-b7a6b28710f6
+™	java:S117­"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$e230c36b-7e6d-4f56-9894-5a7bb81fa4b1
+™	java:S117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$7cc591c1-bc9e-4d21-aac5-6ce27c564f87
+™	java:S117¹"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8Œìœ°‹2J$41c11b01-3dac-464b-a081-7a145ed2f571
+™	java:S117¿"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$aa768711-965e-4b90-97a2-ea3f91a752f8
+™	java:S117Æ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$fdd35e96-06c3-4310-998a-e71787aea70c
+™	java:S117Ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$048f0066-7831-4f5b-b246-38c74b0bd6a7
+™	java:S117î"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$3a8d10be-4a26-4747-b66f-99265700e2cd
+™	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$68e8fd58-163a-466f-814c-f601970158e5
+™	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ™³²øÿÿÿÿ8ìœ°‹2J$a5e52653-1589-4dd4-9cf4-060cfe6192e4
 §
-java:S1488×"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(£¤ÑÎüÿÿÿÿ8ìœ°‹2J$a8d94d71-ff77-4a87-9035-602c7ee994a0
+java:S1488œ"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(£¤ÑÎüÿÿÿÿ8ìœ°‹2J$921236e6-460f-44f2-86ac-34a651e836db
 §
-java:S1488İ"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(’†İ§ÿÿÿÿÿ8ìœ°‹2J$930324af-a862-4af4-8966-70be84e1e0b1
+java:S1488¢"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(’†İ§ÿÿÿÿÿ8ìœ°‹2J$3232a83c-1ddb-48ed-810e-d91f8748a3fd
 ¢
-java:S1488ã"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(¸ªáú8ìœ°‹2J$c535939a-ea60-4bf1-8851-f0aab07c7bb0
+java:S1488¨"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(¸ªáú8ìœ°‹2J$75a93438-900c-40d0-8fa7-3253bdc52291
 §
-java:S1488é"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(¸†³æşÿÿÿÿ8ìœ°‹2J$bfc1d0f3-4a83-402c-bde8-b7f4cadc2336
+java:S1488®"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(¸†³æşÿÿÿÿ8ìœ°‹2J$70623b11-bb21-4f05-9a77-5ef2645c89e9
 §
-java:S1488ï"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(à«ôúÿÿÿÿ8ìœ°‹2J$0002d844-39d4-4d1e-b6c9-db448495d9e9
+java:S1488´"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(à«ôúÿÿÿÿ8ìœ°‹2J$f960c630-b3b4-4cdf-b895-99dc75ac8e55
 §
-java:S1488õ"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(½›Çÿÿÿÿÿ8’ìœ°‹2J$b8bcf03b-9975-46ce-9959-68a2fe4a0fed
+java:S1488º"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(½›Çÿÿÿÿÿ8’ìœ°‹2J$34f6e592-2b19-47ea-9e60-deffa59aeebf
 §
-java:S1488û"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(óîöˆøÿÿÿÿ8’ìœ°‹2J$b41f7917-c6d4-4ae2-a9b4-50376c2a96c4
+java:S1488À"^Immediately return this expression instead of assigning it to the temporary variable "cursor".(óîöˆøÿÿÿÿ8’ìœ°‹2J$0f824a52-d54e-4594-a3f5-d0d7a40b94d9
 «
-java:S1845¥"bRename method "getProductById" to prevent any misunderstanding/clash with method "getProductByID".(Å§ßÿÿÿÿÿ8Şìœ°‹2J$da4cbf66-c971-460c-84d6-a021c6753591
-	java:S107ª"<Method has 8 parameters, which is greater than 7 authorized.(¡ˆå8âìœ°‹2J$d1388ff7-6923-4ea9-ab3f-b04cd9ffc669
-„	java:S107‡"<Method has 8 parameters, which is greater than 7 authorized.(…ÍÇ´ıÿÿÿÿ8âìœ°‹2J$e0998ff0-46fa-49a9-9418-e1a5b3dc64b9
+java:S1845ê"bRename method "getProductById" to prevent any misunderstanding/clash with method "getProductByID".(Å§ßÿÿÿÿÿ8Şìœ°‹2J$f531f31d-40ce-437d-8b8f-915d7fa76f46
+	java:S107ï"<Method has 8 parameters, which is greater than 7 authorized.(¡ˆå8âìœ°‹2J$ad957617-edd8-4c3a-8030-107be683bc64
+„	java:S107Ì"<Method has 8 parameters, which is greater than 7 authorized.(…ÍÇ´ıÿÿÿÿ8âìœ°‹2J$c5568445-a984-4df1-a7ef-bc4815ad7ead
 Š
-java:S1126¡"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8šíœ°‹2J$5a31f90e-0c03-48f8-9691-2b60bfb0c25f
+java:S1126æ"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8šíœ°‹2J$58f8db3e-2f95-40e2-8d74-9ed97b1a7bcc
 Š
-java:S1126±"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8œíœ°‹2J$627fda2f-e57f-43e9-88a7-61d553c7a9e6
+java:S1126ö"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8œíœ°‹2J$f60153c5-531e-4662-ba81-f10995ae1ed9
 Š
-java:S1126Æ"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8íœ°‹2J$bf1555d9-4063-4ede-8e41-75bc03aa1953
+java:S1126‹"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8íœ°‹2J$a0a914e4-eb02-454c-8d25-66069856023c
 Š
-java:S1126×"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8®íœ°‹2J$4dbbd0ed-6a67-4ef8-aabd-175ae781ec9e
+java:S1126œ"AReplace this if-then-else statement by a single return statement.(Ğüæ§şÿÿÿÿ8®íœ°‹2J$5a7522e1-9c7a-4374-be6c-368cecfe306f
