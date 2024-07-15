@@ -1,10 +1,4 @@
 
-~
-Napp/src/main/java/com/example/signuploginfirebase/Product/ProductActivity.java,1\6\16882770ac920207bdfbaebb67f26f38892db449
-„
-Tapp/src/main/java/com/example/signuploginfirebase/Product/CreateProductActivity.java,a\9\a9de03a356b7f400678663c2fea918b1d6a1b36b
-‚
-Rapp/src/main/java/com/example/signuploginfirebase/Product/EditProductActivity.java,1\3\132c094523c9a3b4f8335082dad152840b6b4cfe
 o
 ?app/src/main/java/com/example/signuploginfirebase/DBHelper.java,2\9\296a3469f3beabd5c61984e45e7ece6faa75aab3
 P
@@ -25,3 +19,7 @@ u
 Eapp/src/main/java/com/example/signuploginfirebase/Models/Product.java,8\0\806ee6f1ea304af51dbc22f92b4b99acb437c599
 t
 Dapp/src/main/java/com/example/signuploginfirebase/AboutFragment.java,a\e\ae0523fd79742873c8e0993b410b241935fa8912
+v
+Fapp/src/main/java/com/example/signuploginfirebase/PaymentActivity.java,1\9\196d2fab44eeb67148f9d4417943c32f32e7525e
+s
+Capp/src/main/java/com/example/signuploginfirebase/HomeActivity.java,9\9\991c4cc44718cb25746e53eea3b28524cff3ddb9
