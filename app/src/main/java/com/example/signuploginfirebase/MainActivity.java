@@ -55,7 +55,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ProductAdapter.OnAddToCartClickListener  {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ProductAdapter.OnAddToCartClickListener {
 
     private BroadcastReceiver addToCartReceiver = new BroadcastReceiver() {
         @Override
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String email, username, phone, address;
     TextView navHeaderUsername, navHeaderEmail;
     NavigationView navView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,13 +110,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         address = "";
 
         Cursor cursor = DB.getAddressByEmail(email);
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
             cursor.close();
         }
 
         cursor = DB.getPhoneByEmail(email);
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             phone = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
             cursor.close();
         }
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
@@ -145,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navHeaderEmail = navHeader.findViewById(R.id.navHeaderEmail);
 
 
-
         ///-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // Register the broadcast receiver
@@ -153,17 +153,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new IntentFilter("com.example.signuploginfirebase.ACTION_ADD_TO_CART"));
 //------------------------------------------------------ Insert sample data
         DBHelper db = new DBHelper(this);
-//        boolean success = db.insertUser("dam", "12345678", "dazsingapore48@gmail.com", "1234567890", "123 Main St", 1);
-//        db.insertSampleDataIntoCategories();
-//        db.getAllUsers();
-//        db.insertSampleProducts();
-//
-//        boolean isInserted = db.insertUser(4488, "Dam");
-//        if (isInserted) {
-//            Log.d("DBHelper", "User inserted successfully");
-//        } else {
-//            Log.d("DBHelper", "Error inserting user");
-//        }
+
+        SharedPreferences prefs = getSharedPreferences("RUNFIRSTTIME", MODE_PRIVATE);
+        boolean isFirstRun = prefs.getBoolean("isFirstRun", true); // Default is true
+
+        if (isFirstRun) {
+            // This block will only execute on the first run
+            db.insertUser("dam", "12345678", "dazsingapore48@gmail.com", "1234567890", "123 Main St", 1);
+            db.insertSampleDataIntoCategories();
+            db.insertSampleProducts();
+
+            // After first run, set isFirstRun to false
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isFirstRun", false);
+            editor.apply();
+        }
 
 
         RecyclerView recyclerView = findViewById(R.id.productRecycler);
@@ -225,12 +229,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
 
-        if (id == R.id.nav_home){
+        if (id == R.id.nav_home) {
 //            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
             Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_my_account){
+        } else if (id == R.id.nav_my_account) {
             myAccountFragment = new MyAccountFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, myAccountFragment)
@@ -239,30 +243,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             new Handler().post(new Runnable() {
                 @Override
                 public void run() {
-                    if (myAccountFragment != null && myAccountFragment.getView() != null){
+                    if (myAccountFragment != null && myAccountFragment.getView() != null) {
                         myAccountFragment.updateTextView(username, email, phone, address);
                     }
                 }
             });
-        } else if (id == R.id.nav_my_password){
+        } else if (id == R.id.nav_my_password) {
             myPasswordFragment = new MyPasswordFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myPasswordFragment).commit();
 
             new Handler().post(new Runnable() {
                 @Override
                 public void run() {
-                    if (myPasswordFragment != null && myPasswordFragment.getView() != null){
+                    if (myPasswordFragment != null && myPasswordFragment.getView() != null) {
                         myPasswordFragment.retrieveEmail(email);
                     }
                 }
             });
-        } else if (id == R.id.nav_settings){
+        } else if (id == R.id.nav_settings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
-        } else if (id == R.id.nav_share){
+        } else if (id == R.id.nav_share) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareFragment()).commit();
-        } else if (id == R.id.nav_about){
+        } else if (id == R.id.nav_about) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
-        } else if (id == R.id.nav_logout){
+        } else if (id == R.id.nav_logout) {
             gClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -278,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
