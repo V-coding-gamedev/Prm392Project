@@ -5,10 +5,12 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ListView
-        android:id="@+id/listViewProducts"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewProducts"
         android:layout_width="match_parent"
-        android:layout_height="650dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
 
     <Button
         android:id="@+id/buttonAddProduct"
