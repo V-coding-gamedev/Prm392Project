@@ -1,0 +1,27 @@
+
+‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üŒ¸õúÿÿÿÿJ$a545ab1d-1442-4e0b-85c8-36bd92b99359
+Œ	java:S117I"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖúíJ$cbe17b6a-a6d5-4add-9dc9-0d7bf16c57b0
+—
+java:S1104"VMake product_id a static final constant or non-public and provide accessors if needed.(ª©ÏíşÿÿÿÿJ$45d20f3b-df3a-4566-8ffd-e25f20b1294d
+Œ
+java:S1104"PMake name a static final constant or non-public and provide accessors if needed.( şÍ¾J$746f2977-10c1-46ed-8f6b-e148e5206313
+˜
+java:S1104"WMake description a static final constant or non-public and provide accessors if needed.(¹ÿ†ğÿÿÿÿÿJ$f72be69f-ddf4-4f18-8675-408c84bcd720
+‘
+java:S1104"PMake size a static final constant or non-public and provide accessors if needed.(òİ£¹øÿÿÿÿJ$6482d9f3-3ed4-4dc9-ad49-3a4d8bddfb98
+‘
+java:S1104"UMake unitPrice a static final constant or non-public and provide accessors if needed.(êÿäJ$8649ecf3-b718-4193-ab7a-edb39b7f9d91
+”
+java:S1104	"XMake unitsInStock a static final constant or non-public and provide accessors if needed.(Ñ¢çÈJ$8e50256c-ad2d-4cbc-a6aa-e801534fd9fb
+™
+java:S1104
+"XMake unitsOnOrder a static final constant or non-public and provide accessors if needed.(âÅ¾úÿÿÿÿJ$c8269b82-a50f-4055-a3b0-ba28631a035f
+˜
+java:S1104"WMake category_id a static final constant or non-public and provide accessors if needed.(ãÚµîøÿÿÿÿJ$6dabb262-e705-4dbf-a5c0-7ba373fe8b23
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¾«íæJ$aec0313c-5b68-414c-b310-b36f9763e662
+•	java:S116"URename this field "product_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª©ÏíşÿÿÿÿJ$7e0de950-522e-407c-bd6c-6ae65874fc0f
+–	java:S116"VRename this field "category_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãÚµîøÿÿÿÿJ$f817e4c9-52c0-4c61-bf7a-8f6e0e744f29
+‰	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕŸÅõJ$91cb3558-7a8d-460d-a6ea-da8ed49f5390
+	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üŒ¸õúÿÿÿÿJ$e4cd4713-b712-4c56-853b-c439a5eb55f2
+‰	java:S100E"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğİ¨‚J$15718655-c707-4ef5-99a8-7000348604ed
+‰	java:S100I"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖúíJ$c5e2091d-fecd-4494-9bb4-a2bace080da0

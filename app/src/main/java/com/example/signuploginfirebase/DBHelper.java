@@ -215,6 +215,68 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return productList;
     }
+    public boolean insertProduct(String name, String description, String size, double unitPrice, int unitsInStock, int unitsOnOrder, int categoryId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", name);
+        contentValues.put("description", description);
+        contentValues.put("size", size);
+        contentValues.put("unitPrice", unitPrice);
+        contentValues.put("unitsInStock", unitsInStock);
+        contentValues.put("unitsOnOrder", unitsOnOrder);
+        contentValues.put("category_id", categoryId);
+
+        long result = db.insert("Product", null, contentValues);
+        return result != -1;
+    }
+
+    //update product
+    public Cursor getProductById(int productId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM Product WHERE product_id = ?", new String[]{String.valueOf(productId)});
+    }
+
+    public int updateProduct(int productId, String name, String description, String size, double unitPrice, int unitsInStock, int unitsOnOrder, int categoryId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", name);
+        contentValues.put("description", description);
+        contentValues.put("size", size);
+        contentValues.put("unitPrice", unitPrice);
+        contentValues.put("unitsInStock", unitsInStock);
+        contentValues.put("unitsOnOrder", unitsOnOrder);
+        contentValues.put("category_id", categoryId);
+
+        return db.update("Product", contentValues, "product_id = ?", new String[]{String.valueOf(productId)});
+    }
+
+    public void deleteProduct(int productId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Product", "product_id = ?", new String[]{String.valueOf(productId)});
+    }
+
+    // get all product
+    public List<Product> getAllProducts() {
+        List<Product> productListAll = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Product", null);
+
+        while (cursor.moveToNext()) {
+            Product product = new Product();
+            product.setProduct_id(cursor.getInt(cursor.getColumnIndexOrThrow("product_id")));
+            product.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
+            product.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
+            product.setSize(cursor.getString(cursor.getColumnIndexOrThrow("size")));
+            product.setUnitPrice(cursor.getFloat(cursor.getColumnIndexOrThrow("unitPrice")));
+            product.setUnitsInStock(cursor.getInt(cursor.getColumnIndexOrThrow("unitsInStock")));
+            product.setUnitsOnOrder(cursor.getInt(cursor.getColumnIndexOrThrow("unitsOnOrder")));
+            product.setCategory_id(cursor.getInt(cursor.getColumnIndexOrThrow("category_id")));
+            productListAll.add(product);
+        }
+        cursor.close();
+        return productListAll;
+    }
+
 
 //---------------------------ORDERS--------------------------- //
 
@@ -408,7 +470,7 @@ public class DBHelper extends SQLiteOpenHelper {
             values.put("unitsInStock", Integer.parseInt(product[4]));
             values.put("unitsOnOrder", Integer.parseInt(product[5]));
             values.put("category_id", Integer.parseInt(product[6]));
-            db.insert("Product", null, values);
+            db.insert("com/example/signuploginfirebase/Product", null, values);
         }
     }
 
