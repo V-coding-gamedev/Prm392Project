@@ -1,5 +1,6 @@
 package com.example.signuploginfirebase.Cart;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.example.signuploginfirebase.DBHelper;
 import com.example.signuploginfirebase.Models.Order;
 import com.example.signuploginfirebase.Models.OrderDetail;
 import com.example.signuploginfirebase.Models.Product;
+import com.example.signuploginfirebase.Models.User;
 import com.example.signuploginfirebase.R;
 
 import java.util.List;
@@ -53,7 +55,8 @@ public class CardActivity extends AppCompatActivity {
         List<ItemCart> itemCarts = new java.util.ArrayList<>();
         DBHelper db = new DBHelper(this);
         //đọc order
-        List<Order> orders = db.getOrderByUserID(4488);
+        User usercurrent = getUserFromStore();
+        List<Order> orders = db.getOrderByUserID(usercurrent.user_id);
         float tongtiengia = 0;
         //đọc order detail từ cái order trên cái order nào đang có status là Pendding, add vào
         for (Order order : orders) {
@@ -73,6 +76,14 @@ public class CardActivity extends AppCompatActivity {
         recyclerView.setAdapter(cartAdapter);
         bt3 = findViewById(R.id.thanhtoan_button);
 
+    }
+    User getUserFromStore() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", "");
+        String pass = sharedPreferences.getString("pass", "");
+        DBHelper db = new DBHelper(this);
+        User user = db.getUserByEmailAndPasswordRE(email, pass);
+        return user;
     }
 }
 

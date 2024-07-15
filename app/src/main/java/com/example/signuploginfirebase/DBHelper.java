@@ -215,6 +215,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return productList;
     }
+
     public boolean insertProduct(String name, String description, String size, double unitPrice, int unitsInStock, int unitsOnOrder, int categoryId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -508,6 +509,20 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("phone", "0000000000"); // Set a default phone number
         contentValues.put("address", "default_address"); // Set a default address
         contentValues.put("role_id", 1); // Set a default role_id
+
+        long result = db.insert("Users", null, contentValues);
+        return result != -1;
+    }
+
+    public boolean insertUser(String username, String password, String email, String phone, String address, int roleId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("password", password);
+        contentValues.put("email", email);
+        contentValues.put("phone", phone);
+        contentValues.put("address", address);
+        contentValues.put("role_id", roleId);
 
         long result = db.insert("Users", null, contentValues);
         return result != -1;
