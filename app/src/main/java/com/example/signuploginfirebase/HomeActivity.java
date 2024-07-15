@@ -2,12 +2,14 @@ package com.example.signuploginfirebase;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.signuploginfirebase.Cart.CardActivity;
 import com.example.signuploginfirebase.Models.Product;
+import com.example.signuploginfirebase.Models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.example.signuploginfirebase.Models.Order;
@@ -34,6 +37,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements ProductAdapter.OnAddToCartClickListener {
 
+    EditText search;
+    Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,15 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
         ProductAdapter adapter = new ProductAdapter(productList, this);
         recyclerView.setAdapter(adapter);
 
+//search
+        search = findViewById(R.id.textSearch);
+        searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(v -> {
+            String searchValue = search.getText().toString();
+            List<Product> searchList = db.searchProductsByName(searchValue);
+            ProductAdapter newAdapter = new ProductAdapter(searchList, this); // Use a new adapter instance
+            recyclerView.setAdapter(newAdapter);
+        });
         Button cartButton = findViewById(R.id.cartButton);
         cartButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, CardActivity.class);
@@ -72,6 +86,13 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
         });
     }
 
+    User getUserFromStore() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", "");
+        String pass = sharedPreferences.getString("pass", "");
+        DBHelper db = new DBHelper(this);
+        return db.getUserByEmailAndPasswordRE(email, pass);
+    }
 
     String getTodayDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -89,7 +110,8 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
             DBHelper dbHelper = new DBHelper(this);
 
             Order o = null;
-            int uid = 4488;
+            User user = getUserFromStore();
+            int uid = user.user_id;
             Log.d("DAM", "UID: " + uid);
             try {
                 o = dbHelper.getPendingOrder(uid);
@@ -102,13 +124,13 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.On
                 return o;
             } else {
 //                newOrder.user_id = Integer.parseInt(currentUser.getUid()); // Set the user_id to the current user's ID
-                newOrder.user_id = 4488; // Set the user_id to the current user's ID
+                newOrder.user_id = uid; // Set the user_id to the current user's ID
                 newOrder.orderDate = getTodayDate(); // Set the order date (example)
                 newOrder.status = "Pending"; // Set the order status (example)
                 newOrder.totalAmount = 1.0f; // Set the total amount (example)
-                newOrder.startDate = "2023-10-01"; // Set the start date (example)
-                newOrder.endDate = "2023-10-05"; // Set the end date (example)
-                newOrder.shipAddress = "123 Main St"; // Set the shipping address (example)
+                newOrder.startDate = getTodayDate(); // Set the start date (example)
+                newOrder.endDate = getTodayDate(); // Set the end date (example)
+                newOrder.shipAddress = user.getAddress(); // Set the shipping address (example)
                 long result = dbHelper.createOrder(newOrder);
 
                 if (result != -1) {

@@ -126,6 +126,27 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<Product> searchProductsByName(String searchName) {
+        List<Product> productList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Product WHERE name LIKE ?", new String[]{"%" + searchName + "%"});
+
+        while (cursor.moveToNext()) {
+            Product product = new Product();
+            product.setProduct_id(cursor.getInt(cursor.getColumnIndexOrThrow("product_id")));
+            product.setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
+            product.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
+            product.setSize(cursor.getString(cursor.getColumnIndexOrThrow("size")));
+            product.setUnitPrice(cursor.getFloat(cursor.getColumnIndexOrThrow("unitPrice")));
+            product.setUnitsInStock(cursor.getInt(cursor.getColumnIndexOrThrow("unitsInStock")));
+            product.setUnitsOnOrder(cursor.getInt(cursor.getColumnIndexOrThrow("unitsOnOrder")));
+            product.setCategory_id(cursor.getInt(cursor.getColumnIndexOrThrow("category_id")));
+            productList.add(product);
+        }
+        cursor.close();
+        return productList;
+    }
+
 //---------------------------ORDERS--------------------------- //
 
     // Create Order
@@ -275,12 +296,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Update Order Detail
-public int updateOrderDetail(int orderId, int productId, int quantity) {
-    SQLiteDatabase db = this.getWritableDatabase();
-    ContentValues values = new ContentValues();
-    values.put("quantity", quantity);
-    return db.update("Order_Details", values, "order_id = ? AND product_id = ?", new String[]{String.valueOf(orderId), String.valueOf(productId)});
-}
+    public int updateOrderDetail(int orderId, int productId, int quantity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("quantity", quantity);
+        return db.update("Order_Details", values, "order_id = ? AND product_id = ?", new String[]{String.valueOf(orderId), String.valueOf(productId)});
+    }
 
 
     // Delete Order Detail
@@ -346,20 +367,21 @@ public int updateOrderDetail(int orderId, int productId, int quantity) {
     }
 
     // DBHelper.java
-public boolean insertUser(int userId, String username) {
-    SQLiteDatabase db = this.getWritableDatabase();
-    ContentValues contentValues = new ContentValues();
-    contentValues.put("user_id", userId);
-    contentValues.put("username", username);
-    contentValues.put("password", "default_password"); // Set a default password
-    contentValues.put("email", "default_email@example.com"); // Set a default email
-    contentValues.put("phone", "0000000000"); // Set a default phone number
-    contentValues.put("address", "default_address"); // Set a default address
-    contentValues.put("role_id", 1); // Set a default role_id
+    public boolean insertUser(int userId, String username) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("user_id", userId);
+        contentValues.put("username", username);
+        contentValues.put("password", "default_password"); // Set a default password
+        contentValues.put("email", "default_email@example.com"); // Set a default email
+        contentValues.put("phone", "0000000000"); // Set a default phone number
+        contentValues.put("address", "default_address"); // Set a default address
+        contentValues.put("role_id", 1); // Set a default role_id
 
-    long result = db.insert("Users", null, contentValues);
-    return result != -1;
-}
+        long result = db.insert("Users", null, contentValues);
+        return result != -1;
+    }
+
     // DBHelper.java
     public void getAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -425,6 +447,25 @@ public boolean insertUser(int userId, String username) {
         return cursor;
     }
 
+    public User getUserByEmailAndPasswordRE(String email, String password) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        User user = null;
+        try (Cursor cursor = DB.rawQuery("select * from Users where email = ? and password = ?", new String[]{email, password})) {
+            if (cursor.moveToFirst()) {
+                int userId = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"));
+                String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+                String userEmail = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                String userPassword = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+                String phone = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
+                String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                int roleId = cursor.getInt(cursor.getColumnIndexOrThrow("role_id"));
+                user = new User(userId, username, userEmail, userPassword, phone, address, roleId);
+            }
+        } catch (Exception e) {
+            Log.e("DBHelper", "Error while trying to get user by email and password", e);
+        }
+        return user;
+    }
 
     public Boolean insertuserdata(String usernameTXT, String emailTXT, String phoneTXT,
                                   String passwordTXT, String addressTXT) {
