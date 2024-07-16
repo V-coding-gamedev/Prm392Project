@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/orderDetail"
+    android:background="@drawable/background_color"
+    android:padding="16dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/left_arrowButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/baseline_arrow_back_24"
+            android:contentDescription="@string/left_arrow_description" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chi tiết đơn hàng"
+            android:id="@+id/home"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <TableLayout
+        android:id="@+id/main_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/darker_gray">
+
+        <!-- Header -->
+        <TableRow android:background="#36304a">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#36304a"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Tên sản phẩm"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#36304a"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="SL"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#36304a"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Giá"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#36304a"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Thành tiền"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="170dp"
+        android:layout_marginBottom="10dp"
+        android:text="Tổng : "
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+</LinearLayout>

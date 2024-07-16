@@ -1,5 +1,6 @@
 package com.example.signuploginfirebase;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -688,5 +689,95 @@ public class DBHelper extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    public List<Order> getAllOrder() {
+        List<Order> orderList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + "Orders", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Order order = new Order();
+                order.setOrder_id(cursor.getInt(cursor.getColumnIndexOrThrow("order_id")));
+                order.setStartDate(cursor.getString(cursor.getColumnIndexOrThrow("startDate")));
+                order.setEndDate(cursor.getString(cursor.getColumnIndexOrThrow("endDate")));
+                order.setTotalAmount(cursor.getFloat(cursor.getColumnIndexOrThrow("totalAmount")));
+                order.setShipAddress(cursor.getString(cursor.getColumnIndexOrThrow("shipAddress")));
+                order.setStatus(cursor.getString(cursor.getColumnIndexOrThrow("status")));
+
+                orderList.add(order);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return orderList;
+    }
+
+    @SuppressLint("Range")
+    public List<Order> getOrdersByDateRange(String startDate, String endDate) {
+        List<Order> orders = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Câu truy vấn sửa lại để sử dụng BETWEEN thay vì <=
+        String query = "SELECT * FROM Orders WHERE Orders.startDate BETWEEN ? AND ?";
+        Cursor cursor = db.rawQuery(query, new String[]{startDate, endDate});
+
+        if (cursor.moveToFirst()) {
+            do {
+                Order order = new Order();
+                order.setOrder_id(cursor.getInt(cursor.getColumnIndex("order_id")));
+                order.setOrderDate(cursor.getString(cursor.getColumnIndex("orderDate")));
+                order.setStatus(cursor.getString(cursor.getColumnIndex("status")));
+                order.setTotalAmount(cursor.getFloat(cursor.getColumnIndex("totalAmount")));
+                order.setStartDate(cursor.getString(cursor.getColumnIndex("startDate")));
+                order.setEndDate(cursor.getString(cursor.getColumnIndex("endDate")));
+                order.setShipAddress(cursor.getString(cursor.getColumnIndex("shipAddress")));
+                order.setUser_id(cursor.getInt(cursor.getColumnIndex("user_id")));
+                orders.add(order);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return orders;
+    }
+
+    public List<OrderDetail> getAllOrderDetail(int orderId) {
+        List<OrderDetail> orderDetail = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM Order_Details " +
+                "JOIN Orders ON Orders.order_id = Order_Details.order_id " +
+                "JOIN Product ON Order_Details.product_id = Product.product_id " +
+                "WHERE Order_Details.order_id = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(orderId)});
+
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    OrderDetail product = new OrderDetail();
+                    product.setOrder_id(cursor.getInt(cursor.getColumnIndexOrThrow("order_id")));
+                    product.setProduct_id(cursor.getInt(cursor.getColumnIndexOrThrow("product_id")));
+                    product.setQuantity(cursor.getInt(cursor.getColumnIndexOrThrow("quantity")));
+                    product.setUnit_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_price")));
+
+                    orderDetail.add(product);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e("DBHelper", "Error fetching products by orderId: " + e.getMessage());
+        } finally {
+            cursor.close(); // Close cursor in finally block to ensure it always gets closed
+            db.close(); // Close database connection
+        }
+        return orderDetail;
+    }
+
+    public void updateOrderStatus(int orderId, String newStatus) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", newStatus);
+        db.update("Orders", values, "order_id = ?", new String[]{String.valueOf(orderId)});
+        db.close();
     }
 }
