@@ -21,11 +21,7 @@
         <activity
             android:name=".ProductActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".CreateProductActivity"
             android:exported="true">
@@ -38,13 +34,11 @@
             android:name=".Cart.CardActivity"
             android:exported="false"></activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".HomeFragment"
             android:exported="true">
 
         </activity>
 
-            android:name=".Cart.CardActivity"
-            android:exported="true" />
 
 
         <activity

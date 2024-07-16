@@ -33,7 +33,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         findViewById(R.id.pay_btn).setOnClickListener(v -> {
             // Navigate to the thank you activity
-            Intent intent = new Intent(PaymentActivity.this, HomeActivity.class);
+            Intent intent = new Intent(PaymentActivity.this, HomeFragment.class);
             startActivity(intent);
         });
 

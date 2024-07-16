@@ -21,7 +21,9 @@ t
 Dapp/src/main/java/com/example/signuploginfirebase/AboutFragment.java,a\e\ae0523fd79742873c8e0993b410b241935fa8912
 v
 Fapp/src/main/java/com/example/signuploginfirebase/PaymentActivity.java,1\9\196d2fab44eeb67148f9d4417943c32f32e7525e
-s
-Capp/src/main/java/com/example/signuploginfirebase/HomeActivity.java,9\9\991c4cc44718cb25746e53eea3b28524cff3ddb9
 t
 Dapp/src/main/java/com/example/signuploginfirebase/ProductDetail.java,f\d\fd18c0246cadcda481d08349ec244dbe212d115d
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
